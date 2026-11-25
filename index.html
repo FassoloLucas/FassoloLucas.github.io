@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucas Fassolo · Controladoria & Desenvolvimento</title>
+  <meta name="description" content="Lucas Fassolo: especialista contábil e desenvolvedor. Sistemas, automações fiscais e IA aplicados à contabilidade do varejo.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Lucas Fassolo · Controladoria & Desenvolvimento">
+  <meta property="og:description" content="Sistemas, automações fiscais e IA aplicados à contabilidade do varejo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fassololucas.github.io/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Menu em forma de ilha: recolhido mostra a seção atual; aberto mostra os links. -->
+  <header class="ilha" id="ilha">
+    <button class="ilha-camada ilha-pilula" id="ilha-pilula" aria-expanded="false" aria-controls="ilha-menu" aria-label="Abrir menu">
+      <span class="ilha-marca" aria-hidden="true">LF</span>
+      <span class="ilha-secao" id="ilha-secao">Início</span>
+    </button>
+    <nav class="ilha-camada ilha-menu" id="ilha-menu" aria-label="Seções">
+      <a href="#inicio">Início</a>
+      <a href="#destaque">Destaque</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" data-secao="Início">
+      <div class="largura">
+        <h1 class="hero-nome revelar">Lucas Fassolo</h1>
+        <p class="hero-titulo revelar">Controladoria &amp; Desenvolvimento</p>
+        <p class="hero-texto revelar">
+          Uno a rotina contábil e fiscal do varejo ao desenvolvimento de sistemas:
+          integrações com o banco de dados do ERP, auditoria fiscal em volume e automações
+          que tiram o trabalho manual do fechamento.
+        </p>
+        <div class="hero-acoes revelar">
+          <a class="botao botao-primario" href="#projetos">Ver projetos</a>
+          <a class="botao" href="https://github.com/FassoloLucas" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="destaque" data-secao="Destaque">
+      <div class="largura">
+        <h2 class="secao-titulo revelar">Em produção</h2>
+        <article class="destaque revelar" id="destaque-cartao"></article>
+      </div>
+    </section>
+
+    <section class="secao" id="projetos" data-secao="Projetos">
+      <div class="largura">
+        <div class="secao-topo revelar">
+          <h2 class="secao-titulo">Projetos</h2>
+          <div class="filtro" id="filtro" role="group" aria-label="Filtrar projetos">
+            <span class="filtro-fundo" id="filtro-fundo" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="grade" id="grade"></div>
+      </div>
+    </section>
+
+    <section class="secao" id="habilidades" data-secao="Habilidades">
+      <div class="largura">
+        <h2 class="secao-titulo revelar">Habilidades</h2>
+        <dl class="habilidades revelar" id="habilidades-lista"></dl>
+      </div>
+    </section>
+
+    <section class="secao" id="sobre" data-secao="Sobre">
+      <div class="largura largura-texto">
+        <h2 class="secao-titulo revelar">Sobre</h2>
+        <p class="revelar">
+          Trabalho com contabilidade e fiscal numa rede de varejo com 19 lojas. Foi nessa rotina,
+          entre fechamentos, conciliações e conferências de SPED, que comecei a programar: cada
+          planilha repetida virava uma ferramenta.
+        </p>
+        <p class="revelar">
+          Hoje desenvolvo sistemas de ponta a ponta, do SQL no Oracle do ERP até a tela que a
+          equipe usa todo dia, sempre com as regras contábeis e tributárias aplicadas direto na
+          fonte dos dados. Nas horas vagas, exploro IA aplicada, agentes e automação no Windows
+          e no Android.
+        </p>
+      </div>
+    </section>
+
+    <section class="secao secao-contato" id="contato" data-secao="Contato">
+      <div class="largura">
+        <h2 class="secao-titulo revelar">Contato</h2>
+        <p class="contato-texto revelar">Quer conversar sobre um projeto ou uma vaga? Me escreva.</p>
+        <div class="contato revelar">
+          <div class="contato-email">
+            <a href="mailto:fassololucas@gmail.com" class="contato-link">fassololucas@gmail.com</a>
+            <button class="botao botao-pequeno" id="copiar-email" data-email="fassololucas@gmail.com">Copiar</button>
+          </div>
+          <a href="https://github.com/FassoloLucas" class="contato-link contato-secundario" target="_blank" rel="noopener">github.com/FassoloLucas</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="largura">© <span id="ano">2026</span> Lucas Fassolo</div>
+  </footer>
+
+  <script src="projetos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
