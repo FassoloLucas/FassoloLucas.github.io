@@ -13,22 +13,16 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- Ícones (Lucide), usados com <svg><use href="#i-..."/></svg> -->
+  <!-- Ícone (Lucide) de link que sai do site: <svg><use href="#i-seta"/></svg> -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="i-seta" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
-    <symbol id="i-baixo" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
-    <symbol id="i-cima" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
-    <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
-    <symbol id="i-email" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
-    <symbol id="i-copiar" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
-    <symbol id="i-ok" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   </svg>
 
   <!-- Menu em forma de ilha: recolhido mostra a seção atual; aberto mostra os links. -->
@@ -51,29 +45,22 @@
   <main id="conteudo">
     <section class="hero" id="inicio" data-secao="Início">
       <div class="largura hero-grade">
-        <div class="hero-texto">
-          <h1 class="hero-nome revelar">Lucas Fassolo</h1>
-          <p class="hero-titulo revelar">Controladoria &amp; Desenvolvimento</p>
-          <p class="hero-resumo revelar">
+        <div class="hero-texto entrada">
+          <h1 class="hero-nome">Lucas Fassolo</h1>
+          <p class="hero-titulo">Controladoria &amp; Desenvolvimento</p>
+          <p class="hero-resumo">
             Uno a rotina contábil e fiscal do varejo ao desenvolvimento de sistemas:
             integrações com o banco de dados do ERP, auditoria fiscal em volume e automações
             que tiram o trabalho manual do fechamento.
           </p>
-          <div class="hero-acoes revelar">
-            <a class="botao botao-primario" href="#projetos">
-              Ver projetos <svg class="icone"><use href="#i-baixo"/></svg>
-            </a>
-            <a class="botao" href="https://github.com/FassoloLucas" target="_blank" rel="noopener">
-              <svg class="icone"><use href="#i-github"/></svg> GitHub
-            </a>
+          <div class="hero-acoes">
+            <a class="botao botao-primario" href="#projetos">Ver projetos</a>
+            <a class="botao" href="https://github.com/FassoloLucas" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
 
-        <figure class="codigo revelar" aria-label="Exemplo de consulta SQL de DRE por loja">
-          <figcaption class="codigo-topo">
-            <span>dre_por_loja.sql</span>
-            <span class="codigo-tag">Oracle</span>
-          </figcaption>
+        <figure class="codigo entrada" aria-label="Exemplo de consulta SQL de DRE por loja">
+          <figcaption class="codigo-topo">dre_por_loja.sql</figcaption>
 <pre><code><span class="k">SELECT</span> loja,
        <span class="f">SUM</span>(receita_liquida) <span class="k">AS</span> receita,
        <span class="f">SUM</span>(cmv)             <span class="k">AS</span> custo,
@@ -81,21 +68,21 @@
   <span class="k">FROM</span> fato_dre
  <span class="k">WHERE</span> competencia = <span class="s">'2026-11'</span>
  <span class="k">GROUP BY</span> loja
- <span class="k">ORDER BY</span> margem <span class="k">DESC</span>;<span class="cursor" aria-hidden="true"></span></code></pre>
+ <span class="k">ORDER BY</span> margem <span class="k">DESC</span>;</code></pre>
         </figure>
       </div>
     </section>
 
     <section class="secao" id="destaque" data-secao="Destaque">
       <div class="largura">
-        <h2 class="secao-titulo revelar">Em produção</h2>
+        <h2 class="secao-titulo">Em produção</h2>
         <div class="bento" id="destaque-bento"></div>
       </div>
     </section>
 
     <section class="secao" id="projetos" data-secao="Projetos">
       <div class="largura">
-        <div class="secao-topo revelar">
+        <div class="secao-topo">
           <h2 class="secao-titulo">Projetos</h2>
           <div class="filtro" id="filtro" role="group" aria-label="Filtrar projetos">
             <span class="filtro-fundo" id="filtro-fundo" aria-hidden="true"></span>
@@ -107,46 +94,39 @@
 
     <section class="secao" id="habilidades" data-secao="Habilidades">
       <div class="largura">
-        <h2 class="secao-titulo revelar">Habilidades</h2>
-        <dl class="habilidades revelar" id="habilidades-lista"></dl>
+        <h2 class="secao-titulo">Habilidades</h2>
+        <dl class="habilidades" id="habilidades-lista"></dl>
       </div>
     </section>
 
     <section class="secao" id="sobre" data-secao="Sobre">
       <div class="largura largura-texto">
-        <h2 class="secao-titulo revelar">Sobre</h2>
-        <p class="revelar">
-          Trabalho com contabilidade e fiscal numa rede de varejo com 19 lojas. Foi nessa rotina,
-          entre fechamentos, conciliações e conferências de SPED, que comecei a programar: cada
-          planilha repetida virava uma ferramenta.
+        <h2 class="secao-titulo">Sobre</h2>
+        <p>
+          Trabalho com contabilidade e fiscal numa rede de varejo com 19 lojas. Comecei a
+          programar nessa rotina, para automatizar as planilhas que se repetiam a cada
+          fechamento, conciliação e conferência de SPED.
         </p>
-        <p class="revelar">
+        <p>
           Hoje desenvolvo sistemas de ponta a ponta, do SQL no Oracle do ERP até a tela que a
-          equipe usa todo dia, sempre com as regras contábeis e tributárias aplicadas direto na
-          fonte dos dados. Nas horas vagas, exploro IA aplicada, agentes e automação no Windows
-          e no Android.
+          equipe usa todo dia. As regras contábeis e tributárias ficam aplicadas direto na fonte
+          dos dados. Fora do trabalho, faço projetos com IA, agentes e automação no Windows e no
+          Android.
         </p>
       </div>
     </section>
 
     <section class="secao" id="contato" data-secao="Contato">
       <div class="largura">
-        <div class="contato revelar">
-          <h2 class="secao-titulo">Vamos conversar?</h2>
-          <p class="contato-texto">Sobre um projeto, uma automação ou uma vaga. Respondo por e-mail.</p>
+        <div class="contato">
+          <h2 class="secao-titulo">Contato</h2>
           <div class="contato-email">
             <a href="mailto:fassololucas@gmail.com" class="contato-link">fassololucas@gmail.com</a>
-            <button class="botao botao-pequeno" id="copiar-email" data-email="fassololucas@gmail.com">
-              <svg class="icone"><use href="#i-copiar"/></svg><span>Copiar</span>
-            </button>
+            <button class="botao botao-pequeno" id="copiar-email" data-email="fassololucas@gmail.com">Copiar</button>
           </div>
           <div class="contato-acoes">
-            <a class="botao botao-primario" href="mailto:fassololucas@gmail.com">
-              <svg class="icone"><use href="#i-email"/></svg> Enviar e-mail
-            </a>
-            <a class="botao" href="https://github.com/FassoloLucas" target="_blank" rel="noopener">
-              <svg class="icone"><use href="#i-github"/></svg> github.com/FassoloLucas
-            </a>
+            <a class="botao botao-primario" href="mailto:fassololucas@gmail.com">Enviar e-mail</a>
+            <a class="botao" href="https://github.com/FassoloLucas" target="_blank" rel="noopener">github.com/FassoloLucas</a>
           </div>
         </div>
       </div>
@@ -156,7 +136,7 @@
   <footer class="rodape">
     <div class="largura rodape-linha">
       <span>© <span id="ano">2026</span> Lucas Fassolo</span>
-      <a href="#inicio" class="rodape-topo">Voltar ao topo <svg class="icone"><use href="#i-cima"/></svg></a>
+      <a href="#inicio" class="rodape-topo">Voltar ao topo</a>
     </div>
   </footer>
 

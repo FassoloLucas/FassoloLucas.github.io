@@ -9,7 +9,7 @@ const AREAS = {
 };
 
 const DESTAQUE = {
-  titulo: "Plataforma web de gestão contábil, fiscal e controladoria",
+  titulo: "Plataforma contábil e fiscal",
   resumo:
     "Plataforma interna integrada ao ERP Consinco (Oracle) que centraliza análise contábil, auditoria fiscal, contratos e orçamento de uma rede de varejo. Substitui dezenas de planilhas manuais e aplica as regras contábeis e tributárias direto na fonte de dados.",
   numeros: [
@@ -39,14 +39,14 @@ const PROJETOS = [
     link: "https://github.com/FassoloLucas/gerador-razao-ecd",
   },
   {
-    nome: "Extrator de XML Fiscal",
+    nome: "Extrator de XML fiscal",
     resumo: "App desktop que lê os XMLs fiscais de uma pasta e exporta os dados para um Excel formatado, tudo processado localmente.",
     area: "contabil",
     tecnologias: ["Python", "CustomTkinter", "pandas", "XlsxWriter"],
     link: "https://github.com/FassoloLucas/extrator-xml-fiscal",
   },
   {
-    nome: "Relatório Gerencial CGO × Filial",
+    nome: "Relatório gerencial CGO × filial",
     resumo: "Cruza relatórios CSV por produto e filial e separa numa aba de auditoria os produtos ligados a mais de um CGO.",
     area: "contabil",
     tecnologias: ["Python", "Tkinter", "pandas", "openpyxl"],

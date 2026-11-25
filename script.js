@@ -1,5 +1,4 @@
 const $ = (sel) => document.querySelector(sel);
-const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function el(tag, attrs = {}, ...filhos) {
   const node = document.createElement(tag);
@@ -12,13 +11,14 @@ function el(tag, attrs = {}, ...filhos) {
   return node;
 }
 
-function icone(nome) {
+// Seta ↗ de link que sai do site.
+function setaExterna() {
   const ns = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(ns, "svg");
   svg.setAttribute("class", "icone");
   svg.setAttribute("aria-hidden", "true");
   const use = document.createElementNS(ns, "use");
-  use.setAttribute("href", `#i-${nome}`);
+  use.setAttribute("href", "#i-seta");
   svg.append(use);
   return svg;
 }
@@ -29,58 +29,32 @@ const etiquetas = (lista) =>
 // ───────────── Destaque (bento) ─────────────
 function montarDestaque() {
   const d = DESTAQUE;
-  const link = el("a", { class: "botao", href: d.link, target: "_blank", rel: "noopener" }, d.rotuloLink, icone("seta"));
   $("#destaque-bento").append(
-    el("article", { class: "bloco b-titulo revelar" },
-      el("span", { class: "status", text: "Projeto corporativo em uso" }),
+    el("article", { class: "bloco b-titulo" },
       el("h3", { text: d.titulo }),
-      el("p", { class: "b-resumo", text: d.resumo }),
-      link),
+      el("p", { text: d.resumo }),
+      el("a", { class: "botao", href: d.link, target: "_blank", rel: "noopener" }, d.rotuloLink, setaExterna())),
     ...d.numeros.map((n) =>
-      el("div", { class: "bloco b-numero revelar" },
-        el("strong", { "data-contar": n.valor, text: n.valor }),
-        el("span", { text: n.rotulo }))),
-    el("div", { class: "bloco b-pontos revelar" },
+      el("div", { class: "bloco b-numero" }, el("strong", { text: n.valor }), el("span", { text: n.rotulo }))),
+    el("div", { class: "bloco b-pontos" },
       el("p", { class: "rotulo", text: "O que faz" }),
       el("ul", { class: "pontos" }, ...d.pontos.map((p) => el("li", { text: p })))),
-    el("div", { class: "bloco b-modulos revelar" }, el("p", { class: "rotulo", text: "Módulos" }), etiquetas(d.modulos)),
-    el("div", { class: "bloco b-tec revelar" }, el("p", { class: "rotulo", text: "Tecnologias" }), etiquetas(d.tecnologias)),
+    el("div", { class: "bloco b-modulos" }, el("p", { class: "rotulo", text: "Módulos" }), etiquetas(d.modulos)),
+    el("div", { class: "bloco b-tec" }, el("p", { class: "rotulo", text: "Tecnologias" }), etiquetas(d.tecnologias)),
   );
 }
 
-// Números que contam de zero até o valor quando aparecem ("1.400+" → 0…1400 + "+").
-function contar(node) {
-  const texto = node.dataset.contar;
-  const m = texto.match(/^([\d.]+)(.*)$/);
-  if (!m || semMovimento) return;
-  const alvo = Number(m[1].replace(/\./g, ""));
-  const sufixo = m[2];
-  const inicio = performance.now();
-  const duracao = 1400;
-  const passo = (agora) => {
-    const t = Math.min(1, (agora - inicio) / duracao);
-    const suave = 1 - Math.pow(2, -10 * t); // easeOutExpo
-    node.textContent = Math.round(alvo * (t === 1 ? 1 : suave)).toLocaleString("pt-BR") + sufixo;
-    if (t < 1) requestAnimationFrame(passo);
-  };
-  requestAnimationFrame(passo);
-}
-
 // ───────────── Projetos e filtro ─────────────
-function cartao(p, i) {
-  const a = el("a", {
-    class: `bloco cartao entrando${p.grande ? " grande" : ""}`,
+function cartao(p) {
+  return el("a", {
+    class: `bloco cartao${p.grande ? " grande" : ""}`,
     href: p.link, target: "_blank", rel: "noopener", "data-area": p.area,
   },
-    el("div", { class: "cartao-topo" },
-      el("span", { class: "area", text: AREAS[p.area] }),
-      el("span", { class: "cartao-seta" }, icone("seta"))),
+    el("div", { class: "cartao-topo" }, el("span", { class: "area", text: AREAS[p.area] }), setaExterna()),
     el("h3", { text: p.nome }),
     el("p", { text: p.resumo }),
     etiquetas(p.tecnologias),
   );
-  a.style.setProperty("--i", i);
-  return a;
 }
 
 function mostrarProjetos(area) {
@@ -104,7 +78,7 @@ function montarFiltro() {
     const b = el("button", { type: "button", "aria-pressed": String(valor === "todos"), text: rotulo });
     b.addEventListener("click", () => {
       filtro.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-      b.scrollIntoView({ block: "nearest", inline: "nearest", behavior: semMovimento ? "auto" : "smooth" });
+      b.scrollIntoView({ block: "nearest", inline: "nearest" });
       moverFundoFiltro();
       mostrarProjetos(valor);
     });
@@ -114,18 +88,6 @@ function montarFiltro() {
   moverFundoFiltro();
   window.addEventListener("resize", moverFundoFiltro);
   document.fonts?.ready.then(moverFundoFiltro);
-}
-
-// Brilho que segue o mouse: cada bloco recebe a posição do ponteiro em --x/--y.
-function montarBrilho() {
-  if (!window.matchMedia("(hover: hover)").matches) return;
-  document.addEventListener("pointermove", (e) => {
-    const bloco = e.target.closest?.(".bloco");
-    if (!bloco) return;
-    const r = bloco.getBoundingClientRect();
-    bloco.style.setProperty("--x", `${e.clientX - r.left}px`);
-    bloco.style.setProperty("--y", `${e.clientY - r.top}px`);
-  }, { passive: true });
 }
 
 // ───────────── Habilidades ─────────────
@@ -194,60 +156,27 @@ function montarIlha() {
         secao.textContent = nome;
         secao.classList.remove("trocando");
         medir();
-      }, 160);
+      }, 200); // mesma duração do fade em .ilha-secao
     }
   }, { rootMargin: "-45% 0px -50% 0px" });
   document.querySelectorAll("[data-secao]").forEach((s) => observador.observe(s));
 }
 
-// ───────────── Entrada ao rolar ─────────────
-function montarRevelar() {
-  const observador = new IntersectionObserver((entradas) => {
-    for (const e of entradas) {
-      if (!e.isIntersecting) continue;
-      e.target.classList.add("visivel");
-      e.target.querySelectorAll("[data-contar]").forEach(contar);
-      observador.unobserve(e.target);
-    }
-  }, { rootMargin: "0px 0px -8% 0px" });
-
-  document.querySelectorAll(".revelar").forEach((n) => {
-    // Itens irmãos entram em sequência (início e blocos do destaque).
-    const irmaos = [...n.parentElement.children].filter((x) => x.classList.contains("revelar"));
-    const ordem = irmaos.indexOf(n);
-    if (ordem > 0) n.style.transitionDelay = `${Math.min(ordem, 8) * 70}ms`;
-    observador.observe(n);
-  });
-
-  // Os cartões entram em sequência quando o topo da grade aparece.
-  const grade = $("#grade");
-  const observaGrade = new IntersectionObserver(([e]) => {
-    if (!e.isIntersecting) return;
-    grade.classList.add("pronta");
-    observaGrade.disconnect();
-  }, { rootMargin: "0px 0px -8% 0px" });
-  observaGrade.observe(grade);
-}
-
 // ───────────── Copiar e-mail ─────────────
 function montarCopiar() {
   const botao = $("#copiar-email");
-  const rotulo = botao.querySelector("span");
-  const uso = botao.querySelector("use");
   let timer;
   botao.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(botao.dataset.email);
-      rotulo.textContent = "Copiado";
-      uso.setAttribute("href", "#i-ok");
+      botao.textContent = "Copiado";
       botao.classList.add("copiado");
     } catch {
-      rotulo.textContent = "Não deu para copiar";
+      botao.textContent = "Não foi possível copiar";
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
-      rotulo.textContent = "Copiar";
-      uso.setAttribute("href", "#i-copiar");
+      botao.textContent = "Copiar";
       botao.classList.remove("copiado");
     }, 1800);
   });
@@ -258,6 +187,4 @@ montarDestaque();
 montarFiltro();
 montarHabilidades();
 montarIlha();
-montarBrilho();
-montarRevelar();
 montarCopiar();
