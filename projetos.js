@@ -1,5 +1,6 @@
 // Conteúdo do portfólio. Para incluir um projeto, acrescente um item em PROJETOS.
 // area: "contabil" (Contábil e fiscal), "ia" (IA e web) ou "apps" (Apps e automação).
+// grande: true ocupa duas colunas na grade (use em até dois projetos).
 
 const AREAS = {
   contabil: "Contábil e fiscal",
@@ -33,7 +34,8 @@ const PROJETOS = [
     nome: "Gerador de Livro Razão (ECD)",
     resumo: "Indexa o TXT da ECD em SQLite, gera PDFs por grupo de contas e confere os movimentos contra os saldos da escrituração.",
     area: "contabil",
-    tecnologias: ["Python", "SQLite", "Tkinter", "ReportLab", "pytest"],
+    grande: true,
+    tecnologias: ["Python", "SQLite", "Tkinter", "ReportLab", "pytest", "GitHub Actions"],
     link: "https://github.com/FassoloLucas/gerador-razao-ecd",
   },
   {
@@ -61,7 +63,8 @@ const PROJETOS = [
     nome: "Mundo das IAs",
     resumo: "Cidade simulada com moradores, economia e eleições, onde agentes de IA decidem e o mapa se atualiza ao vivo no navegador.",
     area: "ia",
-    tecnologias: ["Python", "FastAPI", "WebSocket", "JavaScript"],
+    grande: true,
+    tecnologias: ["Python", "FastAPI", "WebSocket", "JavaScript", "Agentes de IA"],
     link: "https://github.com/FassoloLucas/mundo-das-ias",
   },
   {
